@@ -3,6 +3,30 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state ={
+    arr: [
+      "one",
+      "two",
+      "three",
+      "four",
+      "five"
+    ],
+    visList:""
+  }
+  }
+
+updateFilter(str){
+  var x = "";
+  for(var i = 0;i<this.state.arr.length;i++){
+    if(this.state.arr[i].includes(str)){
+      x+= this.state.arr[i] + "\n";
+    }
+  }
+  this.setState({visList:x})
+}
+
   render() {
     return (
       <div className="App">
@@ -10,8 +34,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
+        <input id="filterInput" onChange={(e) => {this.updateFilter(e.target.value);}}/>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          {this.state.visList}
         </p>
       </div>
     );
